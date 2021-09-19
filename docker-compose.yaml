@@ -1,0 +1,13 @@
+version: "3.0"
+services:
+  db:
+    build:
+      context: '.'
+    image: "bozhko-db"
+    environment: 
+      POSTGRES_USER: "bozhko"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "mydb"
+    restart: "unless-stopped"
+    ports: 
+      - "5432:5432"

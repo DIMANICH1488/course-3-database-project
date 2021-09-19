@@ -1,0 +1,36 @@
+{
+  "name": "course-3-database-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DIMANICH1488/course-3-database-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DIMANICH1488/course-3-database-project/issues"
+  },
+  "homepage": "https://github.com/DIMANICH1488/course-3-database-project#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-syntax-optional-chaining": "^7.8.3",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/register": "^7.15.3",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "knex": "^0.95.11",
+    "nodemon": "^2.0.12",
+    "objection": "^2.2.16",
+    "path": "^0.12.7",
+    "pg": "^8.7.1",
+    "process": "^0.11.10",
+    "url": "^0.11.0"
+  }
+}
