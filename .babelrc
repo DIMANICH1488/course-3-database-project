@@ -3,6 +3,12 @@
         "@babel/preset-env"
     ],
     "plugins": [
-        "@babel/plugin-syntax-optional-chaining"
+        "@babel/plugin-syntax-optional-chaining",
+        ["@babel/plugin-syntax-dynamic-import", {
+            "asyncGenerators": true,
+            "generators": true,
+            "async": true
+        }],
+        "@babel/plugin-transform-runtime"
     ]
 }
