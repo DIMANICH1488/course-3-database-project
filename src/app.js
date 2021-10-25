@@ -1,15 +1,17 @@
 import http from 'http';
 import express from 'express';
 
-import { knex, models, } from '../db';
+import { models, } from '../db';
 
 const { User, } = models;
 
 const app = express();
 
-http.createServer(async (req, res) => {
-    console.log('xxx', await User.query());
-    res.end('xxx2');
-}).listen(4000, () => {
+app.get('/', async (req, res) => {
+    const users = await User.query();
+    res.json({ users, });
+});
+
+http.createServer(app).listen(4000, () => {
     console.log('server stared!');
 });

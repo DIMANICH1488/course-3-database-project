@@ -1,11 +1,9 @@
-export const tableName = 'user';
+export const tableName = 'driver';
 
 const create = (knex) => knex.schema.createTable(tableName, (table) => {
-	table.increments('user_id').primary();
-	table.string('login', 64).notNullable().unique();
-	table.string('password', 256).notNullable();
-	table.boolean('moderator').notNullable().defaultTo(false);
-	table.integer('status').notNullable().defaultTo(-1);
+	table.integer('user_id').primary().references('user_id').inTable('user').onUpdate('RESTRICT').onDelete('CASCADE');
+	table.jsonb('info').notNullable().defaultTo({});
+	table.integer('status').notNullable().defaultTo(0);
 });
 
 const drop = (knex) => knex.schema.dropTable(tableName);
@@ -13,20 +11,10 @@ const drop = (knex) => knex.schema.dropTable(tableName);
 const fill = (knex, data) => knex(tableName).insert(data);
 
 const data = [ {
-	user_id: 1,
-	login: 'admin',
-	password: '111111',
-	moderator: true,
-	status: 1,
-}, {
 	user_id: 100,
-	login: 'user',
-	password: '111111',
-	status: 1,
-}, {
-	user_id: 101,
-	login: 'guest',
-	password: '111111',
+	info: {
+		xxx: 1,
+	},
 }, ];
 
 export const up = async (knex) => {
