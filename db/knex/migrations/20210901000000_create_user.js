@@ -3,7 +3,8 @@ export const tableName = 'user';
 const create = (knex) => knex.schema.createTable(tableName, (table) => {
 	table.increments('user_id').primary();
 	table.string('login', 64).notNullable().unique();
-	table.string('password', 256).notNullable();
+	table.string('password', 64).notNullable();
+	table.string('password_hash', 512).notNullable().defaultTo('');
 	table.boolean('moderator').notNullable().defaultTo(false);
 	table.integer('status').notNullable().defaultTo(-1);
 });

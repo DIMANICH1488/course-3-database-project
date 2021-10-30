@@ -2,8 +2,8 @@ export const tableName = 'drive';
 
 const create = (knex) => knex.schema.createTable(tableName, (table) => {
 	table.increments('drive_id').primary();
-	table.integer('order_id').references('order_id').inTable('order').onUpdate('RESTRICT').onDelete('CASCADE');
-	table.integer('driver_id').references('user_id').inTable('driver').onUpdate('RESTRICT').onDelete('CASCADE');
+	table.integer('order_id').notNullable().references('order_id').inTable('order').onUpdate('RESTRICT').onDelete('CASCADE');
+	table.integer('driver_id').notNullable().references('user_id').inTable('driver').onUpdate('RESTRICT').onDelete('CASCADE');
 	table.integer('status').notNullable();
 	table.jsonb('volume').notNullable().defaultTo({});
 	table.jsonb('weight').notNullable().defaultTo({});

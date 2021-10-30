@@ -2,7 +2,7 @@ export const tableName = 'order';
 
 const create = (knex) => knex.schema.createTable(tableName, (table) => {
 	table.increments('order_id').primary();
-	table.integer('user_id').references('user_id').inTable('user').onUpdate('RESTRICT').onDelete('CASCADE');
+	table.integer('user_id').notNullable().references('user_id').inTable('user').onUpdate('RESTRICT').onDelete('CASCADE');
 	table.integer('status').notNullable();
 	table.jsonb('volume').notNullable();
 	table.jsonb('weight').notNullable();
@@ -11,7 +11,7 @@ const create = (knex) => knex.schema.createTable(tableName, (table) => {
 	table.text('comment');
 	table.jsonb('actual_tile').notNullable();
 	table.string('phone', 32).notNullable();
-	table.jsonb('price').notNullable();
+	table.jsonb('price');
 });
 
 const drop = (knex) => knex.schema.dropTable(tableName);
