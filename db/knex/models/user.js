@@ -29,15 +29,24 @@ export class User extends Model {
 	}
 
 	static get relationMappings() {
-		const Driver = require('./driver');
+		const { Driver, } = require('./driver');
+		const { Order, } = require('./order');
+		const { Feedback, } = require('./feedback');
 		return {
 			driver: {
 				relation: Model.HasOneRelation,
 				modelClass: Driver,
-				join: {
-					from: 'user.userId',
-					to: 'driver.userId',
-				},
+				join: { from: 'user.user_id', to: 'driver.user_id', },
+			},
+			order: {
+				relation: Model.HasManyRelation,
+				modelClass: Order,
+				join: { from: 'user.user_id', to: 'order.user_id', },
+			},
+			feedback: {
+				relation: Model.HasManyRelation,
+				modelClass: Feedback,
+				join: { from: 'user.user_id', to: 'feedback.user_id', },
 			},
 		};
 	}

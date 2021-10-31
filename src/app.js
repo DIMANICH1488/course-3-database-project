@@ -3,12 +3,11 @@ import express from 'express';
 
 import { models, } from '../db';
 
-const { User, } = models;
-
 const app = express();
 
 app.get('/', async (req, res) => {
-    const users = await User.query();
+    const users = await models.User.query().withGraphFetched({ driver: true, });
+    // const drivers = await models.Driver.query().withGraphFetched({ user: true, });
     res.json({ users, });
 });
 

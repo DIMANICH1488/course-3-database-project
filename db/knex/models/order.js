@@ -76,4 +76,22 @@ export class Order extends Model {
 			},
 		};
 	}
+
+	static get relationMappings() {
+		const { User, } = require('./user');
+		const { Drive, } = require('./drive');
+		return {
+			user: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: User,
+				join: { from: 'order.user_id', to: 'user.usert_id', },
+			},
+			drive: {
+				relation: Model.HasManyRelation,
+				modelClass: Drive,
+				join: { from: 'order.order_id', to: 'drive.order_id', },
+			},
+		};
+	}
+
 }

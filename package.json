@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon ./index.js",
+    "start": "DEBUG=*,-babel:*,-express:*,-knex:client,-nodemon:*,-nodemon  npx nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

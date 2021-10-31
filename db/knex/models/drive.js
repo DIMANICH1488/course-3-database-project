@@ -60,4 +60,22 @@ export class Drive extends Model {
 			},
 		};
 	}
+
+	static get relationMappings() {
+		const { Driver, } = require('./driver');
+		const { Order, } = require('./order');
+		return {
+			user: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: Driver,
+				join: { from: 'drive.driver_id', to: 'driver.user_id', },
+			},
+			drive: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: Order,
+				join: { from: 'drive.order_id', to: 'order.order_id', },
+			},
+		};
+	}
+
 }

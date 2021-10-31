@@ -26,15 +26,18 @@ export class Driver extends Model {
 	}
 
 	static get relationMappings() {
-		const User = require('./user');
+		const { User, } = require('./user');
+		const { Drive, } = require('./drive');
 		return {
 			user: {
 				relation: Model.BelongsToOneRelation,
 				modelClass: User,
-				join: {
-					from: 'driver.userId',
-					to: 'user.usertId'
-				}
+				join: { from: 'driver.user_id', to: 'user.user_id', },
+			},
+			drive: {
+				relation: Model.HasManyRelation,
+				modelClass: Drive,
+				join: { from: 'driver.user_id', to: 'drive.driver_id', },
 			},
 		};
 	}

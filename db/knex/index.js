@@ -8,6 +8,6 @@ export const knex = Knex(config);
 Model.knex(knex);
 
 export const models = fs.readdirSync(resolve(__dirname, 'models'))
-.filter(file => /[\.]js$/.test(file))
-.map(file => require(`./models/${ file }`))
-.reduce((models, model) => Object.assign(models, model), {});
+	.filter(file => /[\.]js$/.test(file))
+	.map(file => require(`./models/${ file }`))
+	.reduce((models, model) => Object.assign(models, model), {});

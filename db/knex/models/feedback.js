@@ -30,4 +30,23 @@ export class Feedback extends Model {
 			}
 		};
 	}
+
+	static get relationMappings() {
+		const { Drive, } = require('./drive');
+		const { User, } = require('./user');
+		return {
+			user: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: Drive,
+				join: { from: 'feedback.drive_id', to: 'drive.drive_id', },
+			},
+			drive: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: User,
+				join: { from: 'feedback.user_id', to: 'user.user_id', },
+			},
+		};
+	}
+
+
 }
