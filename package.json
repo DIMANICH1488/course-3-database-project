@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=*,-babel:*,-express:*,-knex:client,-nodemon:*,-nodemon  npx nodemon ./index.js",
+    "start": "DEBUG=*,-babel*,-express*,-knex:client,-nodemon*  npx nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "babel-node": "0.0.1-security",
     "debug": "^4.3.2",
     "express": "^4.17.1",
+    "express-async-error": "0.0.2",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "knex": "^0.95.11",
