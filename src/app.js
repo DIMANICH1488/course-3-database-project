@@ -20,21 +20,21 @@ app.set('app', app);
 app.set('root', root);
 app.set('repo', repo);
 
-// middleware.poweredBy({ app, });
-// middleware.bodyJSON({ app, });
-// middleware.bodyRaw({ app, });
-// middleware.bodyText({ app, });
-// middleware.bodyUri({ app, });
-// middleware.request({ app, logger, repo, root, });
-// middleware.cors({ app, });
-// middleware.asset({ app, });
-// middleware.cookie({ app, env, });
-// middleware.swig({ app, isProduction, root, });
+middleware.poweredBy({ app, });
+middleware.bodyJSON({ app, });
+middleware.bodyRaw({ app, });
+middleware.bodyText({ app, });
+middleware.bodyUri({ app, });
+middleware.request({ app, logger, repo, root, });
+middleware.cors({ app, });
+middleware.asset({ app, });
+middleware.cookie({ app, env, });
+middleware.render({ app, isProduction, root, repo, logger, });
 
 app.use('/api', api.router);
 app.use('/', ssr.router);
 
-// middleware.unknown({ app, lib, });
+middleware.unknown({ app, lib, });
 // middleware.response({ app, lib, isProduction, logger, });
 
 const server = http.createServer(app);
