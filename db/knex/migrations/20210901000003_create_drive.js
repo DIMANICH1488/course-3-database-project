@@ -20,6 +20,7 @@ const drop = (knex) => knex.schema.dropTable(tableName);
 export const up = async (knex) => {
 	console.log(create(knex).toString());
   await create(knex);
+	await knex.raw(`SELECT SETVAL('drive_drive_id_seq', ?)`, [ 1000, ]);
 };
 
 export const down = async (knex) => {

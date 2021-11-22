@@ -1,7 +1,6 @@
 import express from 'express';
-import 'express-async-error';
+import 'express-async-errors';
 import http from 'http';
-// import https from 'https';
 import { normalize, resolve, } from 'path';
 
 import { env, mode, isProduction, } from '../env';
@@ -35,7 +34,7 @@ app.use('/api', api.router);
 app.use('/', ssr.router);
 
 middleware.unknown({ app, lib, });
-// middleware.response({ app, lib, isProduction, logger, });
+middleware.response({ app, lib, isProduction, logger, });
 
 const server = http.createServer(app);
 

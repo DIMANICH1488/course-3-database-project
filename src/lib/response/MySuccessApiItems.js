@@ -1,4 +1,4 @@
-export class MySuccessItems extends Error {
+export class MySuccessApiItems extends Error {
 	constructor({
 		items,
 		total,

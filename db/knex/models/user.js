@@ -10,13 +10,13 @@ export class User extends Model {
   }
 
 	static get idColumn() {
-		return 'userId';
+		return 'user_id';
 	}
 
 	static get jsonSchema() {
 		return {
 			type: 'object',
-			required: [ 'login', 'password', 'password_hash', 'moderator', 'status', ],
+			required: [ 'login', 'password', 'passwordHash', 'moderator', 'status', ],
 			properties: {
 				userId: { type: 'integer', },
 				login: { type: 'string', minLength: 1, maxLength: 64, },

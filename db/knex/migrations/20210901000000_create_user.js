@@ -35,6 +35,7 @@ export const up = async (knex) => {
 	console.log(fill(knex, data).toString());
   await create(knex);
 	await fill(knex, data);
+	await knex.raw(`SELECT SETVAL('user_user_id_seq', ?)`, [ 1000, ]);
 };
 
 export const down = async (knex) => {

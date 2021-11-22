@@ -14,6 +14,7 @@ export default ({ app, lib, isProduction, logger, }) => {
 	} = lib;
 
 	app.use((E, req, res, next) => {
+		console.log('response.use', { E, });
 		if (E instanceof MySuccessApi) {
 			const { data, } = E;
 			res.status(200).json({ ...data, });
