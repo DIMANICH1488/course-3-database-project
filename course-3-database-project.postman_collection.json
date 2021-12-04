@@ -9,13 +9,13 @@
 			"name": "user",
 			"item": [
 				{
-					"name": "user create",
+					"name": "create user",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\": \"test\",\n    \"password\": \"test\",\n    \"moderator\": true,\n    \"status\": 1\n}",
+							"raw": "{\n    \"userId\": 1000,\n    \"login\": \"test\",\n    \"password\": \"test\",\n    \"moderator\": true,\n    \"status\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -35,7 +35,7 @@
 					"response": []
 				},
 				{
-					"name": "user read by userId",
+					"name": "read user by userId",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -51,7 +51,7 @@
 							"variable": [
 								{
 									"key": "userId",
-									"value": "1"
+									"value": "1000"
 								}
 							]
 						}
@@ -59,13 +59,13 @@
 					"response": []
 				},
 				{
-					"name": "user update",
+					"name": "update user",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\": \"test123\",\n    \"password\": \"321\",\n    \"status\": -1\n}",
+							"raw": "{\n    \"password\": \"123456\",\n    \"status\": -1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,7 +84,7 @@
 							"variable": [
 								{
 									"key": "userId",
-									"value": "1001"
+									"value": "1000"
 								}
 							]
 						}
@@ -92,7 +92,7 @@
 					"response": []
 				},
 				{
-					"name": "user remove",
+					"name": "remove user",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -108,6 +108,366 @@
 							"variable": [
 								{
 									"key": "userId",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/user?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "driver",
+			"item": [
+				{
+					"name": "create driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"info\": { \"a\": 1 },\n    \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/driver",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read driver by userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/driver/:userId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"driver",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update driver",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"info\": { \"b\": 2 },\n    \"status\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/driver/:userId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"driver",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove driver",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/driver/:userId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"driver",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list driver",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/driver?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"driver"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1000,\n    \"status\": 0,\n    \"volume\": {\n        \"input\": 123,\n        \"unit\": \"L\"\n    },\n    \"weight\": {\n        \"input\": 321,\n        \"unit\": \"kg\"\n    },\n    \"from\": {\n        \"latitude\": 10,\n        \"longitude\": 13,\n        \"address\": \"addressFrom\"\n    },\n    \"to\": {\n        \"latitude\": 12,\n        \"longitude\": 15,\n        \"address\": \"addressTo\"\n    },\n    \"comment\": \"comment\",\n    \"actualTile\": \"2022-01-02T22:22:21.000+Z\",\n    \"phone\": \"+123456789\",\n    \"price\": {\n        \"input\": 121,\n        \"unit\": \"euro\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/order",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read order by orderId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/order/:orderId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"order",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "1005"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/order/:orderId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"order",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "1006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/order/:orderId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"order",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "1004"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/order?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "drive",
+			"item": [
+				{
+					"name": "create drive",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": 1005,\n    \"driverId\": 100,\n    \"status\": 0,\n    \"volume\": 123,\n    \"weight\": 321,\n    \"from\": {\n        \"latitude\": 10,\n        \"longitude\": 13,\n        \"address\": \"addressFrom\"\n    },\n    \"to\": {\n        \"latitude\": 12,\n        \"longitude\": 15,\n        \"address\": \"addressTo\"\n    },\n    \"comment\": \"comment\",\n    \"actualTile\": \"2022-01-02T22:22:21.000+Z\",\n    \"phone\": \"+123456789\",\n    \"price\": 164\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/drive",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"drive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read drive by driveId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/drive/:driveId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"drive",
+								":driveId"
+							],
+							"variable": [
+								{
+									"key": "driveId",
 									"value": "1001"
 								}
 							]
@@ -116,17 +476,281 @@
 					"response": []
 				},
 				{
-					"name": "users list",
+					"name": "update drive",
 					"request": {
-						"method": "GET",
+						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{API_V1}}/user",
+							"raw": "{{API_V1}}/drive/:driveId",
 							"host": [
 								"{{API_V1}}"
 							],
 							"path": [
-								"user"
+								"drive",
+								":driveId"
+							],
+							"variable": [
+								{
+									"key": "driveId",
+									"value": "1001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove drive",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/drive/:driveId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"drive",
+								":driveId"
+							],
+							"variable": [
+								{
+									"key": "driveId",
+									"value": "1001"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list drives",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/drive?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"drive"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feedback",
+			"item": [
+				{
+					"name": "create feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driveId\": 1002,\n    \"userId\": 100,\n    \"comment\": \"comment\",\n    \"mark\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/feedback",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read feedback by feedbackId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/feedback/:feedbackId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"feedback",
+								":feedbackId"
+							],
+							"variable": [
+								{
+									"key": "feedbackId",
+									"value": "1002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update feedback",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mark\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_V1}}/feedback/:feedbackId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"feedback",
+								":feedbackId"
+							],
+							"variable": [
+								{
+									"key": "feedbackId",
+									"value": "1002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove feedback",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/feedback/:feedbackId",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"feedback",
+								":feedbackId"
+							],
+							"variable": [
+								{
+									"key": "feedbackId",
+									"value": "1002"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/feedback?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"feedback"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list feedbacks by driveId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/drive/1002/feedback?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"drive",
+								"1002",
+								"feedback"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list feedbacks by userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_V1}}/user/100/feedback?skip=0&take=10",
+							"host": [
+								"{{API_V1}}"
+							],
+							"path": [
+								"user",
+								"100",
+								"feedback"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								}
 							]
 						}
 					},
