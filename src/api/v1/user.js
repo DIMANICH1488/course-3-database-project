@@ -10,12 +10,13 @@ export const router = new Router({
 
 const version = 1;
 
+// TODO: validation
 router.route('/user')
 	.get(async (req, res) => {
 		const { query, } = req;
 		const data = { ...query, };
-		const { items, } = await userService.handlerList(data, req);
-		throw new MySuccessApiItems({ items, version, });
+		const { items, total, } = await userService.handlerList(data, req);
+		throw new MySuccessApiItems({ items, total, version, });
 	})
 	.post(async (req, res) => {
 		const { body, } = req;

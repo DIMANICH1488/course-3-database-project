@@ -10,7 +10,7 @@ export class Driver extends Model {
   }
 
 	static get idColumn() {
-		return 'userId';
+		return 'user_id';
 	}
 
 	static get jsonSchema() {

@@ -10,7 +10,7 @@ export class Order extends Model {
   }
 
 	static get idColumn() {
-		return 'orderId';
+		return 'order_id';
 	}
 
 	static get jsonSchema() {
@@ -19,11 +19,11 @@ export class Order extends Model {
 			required: [
 				'userId',
 				'status',
-				'valume',
+				'volume',
 				'weight',
 				'from',
 				'to',
-				'actialTile',
+				'actualTile',
 				'phone',
 			],
 			properties: {
@@ -35,7 +35,7 @@ export class Order extends Model {
 					properties: {
 						value: { type: 'number', },
 						input: { type: 'number', },
-						unit: { type: 'string', },
+						unit: { type: 'string', enum: [ 'cm^3', 'm^3', 'L', 'kL' ], },
 					},
 				},
 				weight: {
@@ -43,7 +43,7 @@ export class Order extends Model {
 					properties: {
 						value: { type: 'number', },
 						input: { type: 'number', },
-						unit: { type: 'string', },
+						unit: { type: 'string', enum: [ 'mg', 'g', 'kg', ], },
 					},
 				},
 				from: {
@@ -63,14 +63,14 @@ export class Order extends Model {
 					},
 				},
 				comment: { type: 'string', },
-				actualTile: { type: 'string', },
+				actualTile: { type: 'string', minLength: 1, maxLength: 32, },
 				phone: { type: 'string', minLength: 1, maxLength: 32, },
 				price: {
 					type: 'object',
 					properties: {
 						value: { type: 'number', },
 						input: { type: 'number', },
-						unit: { type: 'string', },
+						unit: { type: 'string', enum: [ 'ua', '$', 'euro', ], },
 					},
 				},
 			},
@@ -92,6 +92,37 @@ export class Order extends Model {
 				join: { from: 'order.order_id', to: 'drive.order_id', },
 			},
 		};
+	}
+
+	static volumeValue(input, unit) {
+		const ok = _ => Number.isFinite(_);
+		const k = {
+			'cm^3': 0.001,
+			'm^3': 1000,
+			'L': 1,
+			'kL': 1000,
+		}[unit] ?? null;
+		return ok(input) && ok(k) ? k * input : null;
+	}
+
+	static weightValue(input, unit) {
+		const ok = _ => Number.isFinite(_);
+		const k = {
+			'mg': 0.000001,
+			'g': 0.001,
+			'kg': 1,
+		}[unit] ?? null;
+		return ok(input) && ok(k) ? k * input : null;
+	}
+
+	static priceValue(input, unit) {
+		const ok = _ => Number.isFinite(_);
+		const k = {
+			'ua': 0.037,
+			'$': 1,
+			'euro': 1.1481,
+		}[unit] ?? null;
+		return ok(input) && ok(k) ? k * input : null;
 	}
 
 }

@@ -9,7 +9,7 @@ const create = (knex) => knex.schema.createTable(tableName, (table) => {
 	table.jsonb('from').notNullable();
 	table.jsonb('to').notNullable();
 	table.text('comment');
-	table.jsonb('actual_tile').notNullable();
+	table.string('actual_tile', 32).notNullable();
 	table.string('phone', 32).notNullable();
 	table.jsonb('price');
 });

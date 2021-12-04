@@ -10,7 +10,7 @@ export class Drive extends Model {
   }
 
 	static get idColumn() {
-		return 'driveId';
+		return 'drive_id';
 	}
 
 	static get jsonSchema() {
@@ -20,11 +20,11 @@ export class Drive extends Model {
 				'orderId',
 				'driverId',
 				'status',
-				'valume',
+				'volume',
 				'weight',
 				'from',
 				'to',
-				'actialTile',
+				'actualTile',
 				'phone',
 				'price',
 			],
@@ -54,7 +54,7 @@ export class Drive extends Model {
 					},
 				},
 				comment: { type: 'string', },
-				actualTile: { type: 'string', },
+				actualTile: { type: 'string', minLength: 1, maxLength: 32, },
 				phone: { type: 'string', minLength: 1, maxLength: 32, },
 				price: { type: 'number', },
 			},

@@ -3,7 +3,8 @@
 SHOW GRANTS;
 
 # 2)
-CREATE USER 'abc'@'localhost' IDENTIFIED BY 'abc';
+DROP USER IF EXISTS 'abc'@'localhost';
+CREATE USER IF NOT EXISTS 'abc'@'localhost' IDENTIFIED BY 'abc';
 GRANT ALL PRIVILEGES ON * TO 'abc'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 SHOW GRANTS FOR 'abc'@'localhost';
@@ -18,8 +19,8 @@ SHOW GRANTS FOR 'abc'@'localhost';
 GRANT SELECT (user_id, login, moderator) ON `mydb`.`user` TO 'abc'@'localhost';
 
 # 6)
+DROP PROCEDURE IF EXISTS `insert_user`;
 DELIMITER ;;
-DROP PROCEDURE IF EXISTS `insert_user`;;
 CREATE PROCEDURE `insert_user` (
     IN login VARCHAR(64),
     IN password VARCHAR(256),
@@ -40,7 +41,7 @@ SELECT * FROM mydb.user;
 CALL insert_user('zyx', 'zyx', false, 0);
 
 # 8)
-DROP USER 'abc'@'localhost';
+DROP USER IF EXISTS 'abc'@'localhost';
 
 # 9 + 10)
 DROP PROCEDURE IF EXISTS `insert_user_tr`;
@@ -67,3 +68,4 @@ END
 DELIMITER ;
 CALL `insert_user_tr`('user123', 'user123', true, 1);
 CALL `insert_user_tr`('user1234', 'user1234', true, 1);
+SELECT * FROM mydb.user;

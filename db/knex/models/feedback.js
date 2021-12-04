@@ -10,7 +10,7 @@ export class Feedback extends Model {
   }
 
 	static get idColumn() {
-		return 'feedbackId';
+		return 'feedback_id';
 	}
 
 	static get jsonSchema() {
