@@ -85,43 +85,55 @@ app.post(
     V.body('password').isLength({ min: 1, max: 64, }).withMessage('Wrong password'),
     V.validate,
     async (req, res) => {
-        const { body, } = req;
-        const { login, password, } = body;
-        const form = {
-            login,
-            password,
-            moderator: false,
-            status: 1,
-        };
-        const user = await userService.handlerCreate(form, req);
-        const data = {
-            userId: user?.userId,
-            moderator: user?.moderator,
-        };
-        const expiresIn = '1h';
-        const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
-        res.json({ register: true, login: true, token, });
+        try {
+            const { body, } = req;
+            const { login, password, } = body;
+            const form = {
+                login,
+                password,
+                moderator: false,
+                status: 1,
+            };
+            const user = await userService.handlerCreate(form, req);
+            const data = {
+                userId: user?.userId,
+                moderator: user?.moderator,
+            };
+            const expiresIn = '1h';
+            const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
+            res.json({ register: true, login: true, token, });
+        } catch (error) {
+            res.json({ error, });
+        }
     }
 );
 app.post(
     '/login',
     passport.authenticate('local'),
     async (req, res) => {
-        const data = {
-            userId: req.user?.userId,
-            moderator: req.user?.moderator,
-        };
-        const expiresIn = '1h';
-        const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
-        res.json({ login: true, token, });
+        try {
+            const data = {
+                userId: req.user?.userId,
+                moderator: req.user?.moderator,
+            };
+            const expiresIn = '1h';
+            const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
+            res.json({ login: true, token, });
+        } catch (error) {
+            res.json({ error, });
+        }
     }
 );
 app.get(
     '/logout',
     async (req, res) => {
-        req?.logout?.();
-        delete req.session;
-        res.json({ logout: true, token: null, });
+        try {
+            req?.logout?.();
+            delete req.session;
+            res.json({ logout: true, token: null, });
+        } catch (error) {
+            res.json({ error, });
+        }
     }
 );
 const verify = (req, res, next) => {
