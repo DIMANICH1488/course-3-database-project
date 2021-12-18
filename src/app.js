@@ -12,8 +12,10 @@ import { env, mode, isProduction, } from '../env';
 import { logger, } from './logger';
 import * as middleware from './middleware';
 import * as lib from './lib';
+import * as V from './lib/validation';
 import * as api from './api';
 import * as ssr from './ssr';
+import { userService, } from './service';
 
 const { JWT_SECRET = '1234567890', SESSION_SECRET = '1234567890', } = env;
 const app = express();
@@ -78,10 +80,37 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post(
+    '/register',
+    V.body('login').isLength({ min: 1, max: 64, }).withMessage('Wrong login'),
+    V.body('password').isLength({ min: 1, max: 64, }).withMessage('Wrong password'),
+    V.validate,
+    async (req, res) => {
+        const { body, } = req;
+        const { login, password, } = body;
+        const form = {
+            login,
+            password,
+            moderator: false,
+            status: 1,
+        };
+        const user = await userService.handlerCreate(form, req);
+        const data = {
+            userId: user?.userId,
+            moderator: user?.moderator,
+        };
+        const expiresIn = '1h';
+        const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
+        res.json({ register: true, login: true, token, });
+    }
+);
+app.post(
     '/login',
     passport.authenticate('local'),
     async (req, res) => {
-        const data = { userId: req.user?.userId, moderator: req.user?.moderator };
+        const data = {
+            userId: req.user?.userId,
+            moderator: req.user?.moderator,
+        };
         const expiresIn = '1h';
         const token = jwt.sign(data, JWT_SECRET, { expiresIn, });
         res.json({ login: true, token, });
