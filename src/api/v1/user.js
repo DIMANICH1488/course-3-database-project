@@ -27,7 +27,7 @@ router.route('/user')
 		}
 	)
 	.post(
-		V.bodyInt('userId', 1),
+		V.bodyInt('userId', 1).optional(),
 		V.body('login').isLength({ min: 1, max: 64, }).withMessage('Wrong login'),
 		V.body('password').isLength({ min: 1, max: 64, }).withMessage('Wrong password'),
 		V.bodyIn('moderator', [false, true]).optional(),
