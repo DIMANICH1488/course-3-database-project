@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { Model, snakeCaseMappers, } from 'objection';
 
 const salt = bcrypt.genSaltSync(10);
@@ -57,5 +57,9 @@ export class User extends Model {
 	static passwordToPasswordHash(password) {
 		const passwordHash = bcrypt.hashSync(password, salt);
 		return passwordHash;
+	}
+
+	static passwordCompare(password, passwordHash) {
+		return bcrypt.compareSync(password, passwordHash);
 	}
 }

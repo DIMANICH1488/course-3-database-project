@@ -4,13 +4,13 @@ export class MyError extends Error {
 		text,
 	}) {
 		super(text ?? error?.message);
-		const columnNumber = this.columnNumber;
-		const fileName = this.fileName;
-		const lineNumber = this.lineNumber;
-		const message = this.message;
-		const name = this.name;
-		const stack = this.stack;
-		const toSource = this.toSource;
+		const columnNumber = super.columnNumber;
+		const fileName = super.fileName;
+		const lineNumber = super.lineNumber;
+		const message = super.message;
+		const name = super.name;
+		const stack = super.stack;
+		const toSource = super.toSource;
 
 		Object.defineProperties(this, {
 			columnNumber: { get: () => error?.columnNumber ?? columnNumber, },

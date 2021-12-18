@@ -1,0 +1,9 @@
+version: "3.0"
+services:
+  lab5:
+    entrypoint: [ "redis-server", "--port 6380" ]
+    image: "redis"
+    restart: "unless-stopped"
+    ports:
+      - "6379:6379"
+      - "6380:6380"
